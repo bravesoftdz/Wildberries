@@ -43,6 +43,41 @@ type
     property Nodes: TArray<TwbMenuItem> read fNodes write fNodes;
   end;
 
+  TwbMenuItems = TArray<TwbMenuItem>;
+
+  TwbProductItem = class
+  private
+    [JsonName('id')]
+    fID: Integer;
+    fRoot: Integer;
+    fKindID: Integer;
+    fSubjectID: Integer;
+    [JsonName('name')]
+    fName: string;
+    FBrand: string;
+    FBrandID: Integer;
+    FSiteBrandID: Integer;
+    FSale: Integer;
+    FPriceU: Integer;
+    FSalePriceU: Integer;
+    FPics: Integer;
+    FRating: Byte;
+  published
+    property ID: Integer read fID write fID;
+    property Root: Integer read fRoot write fRoot;
+    property KindID: Integer read fKindID write fKindID;
+    property SubjectID: Integer read fSubjectID write fSubjectID;
+    property Name: string read fName write fName;
+    property Brand: string read FBrand write FBrand;
+    property BrandID: Integer read FBrandID write FBrandID;
+    property SiteBrandID: Integer read FSiteBrandID write FSiteBrandID;
+    property Sale: Integer read FSale write FSale;
+    property PriceU: Integer read FPriceU write FPriceU;
+    property SalePriceU: Integer read FSalePriceU write FSalePriceU;
+    property Pics: Integer read FPics write FPics;
+    property Rating: Byte read FRating write FRating;
+  end;
+
 implementation
 
 end.

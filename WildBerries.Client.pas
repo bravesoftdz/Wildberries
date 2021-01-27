@@ -11,7 +11,7 @@ type
   private
     fCloud: TCloudApiClient;
   public
-    function GetMenu: TwbResponse<TwbMenuItem>;
+    function GetMenu: TwbResponse<TwbMenuItems>;
     constructor Create;
     destructor Destroy; override;
 
@@ -19,6 +19,9 @@ type
 
 implementation
 
+uses
+  CloudAPI.Request,
+  CloudAPI.Response;
 { TWildBerriesClient }
 
 constructor TWildBerriesClient.Create;
@@ -33,9 +36,15 @@ begin
   inherited;
 end;
 
-function TWildBerriesClient.GetMenu: TwbResponse<TwbMenuItem>;
+function TWildBerriesClient.GetMenu: TwbResponse<TwbMenuItems>;
+var
+  lReq: IcaRequest;
+  lRes: IcaResponse<TwbResponse<TwbMenuItems>>;
 begin
-
+  lReq := TcaRequest.Create;
+  lReq.Resource := 'https://wbxmenu-eu.wildberries.ru/ua/v3/api?lang=ru';
+  lRes := fCloud.Execute < TwbResponse < TwbMenuItems >> (lReq);
+  Result := lRes.Data;
 end;
 
 end.
